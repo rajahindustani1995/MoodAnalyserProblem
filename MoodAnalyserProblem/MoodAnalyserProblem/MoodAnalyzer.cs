@@ -13,6 +13,7 @@ namespace MoodAnalyzerProblem
         public MoodAnalyzer(string message)
         {
             this.message = message;
+
         }
 
         public string AnalyzeMood()
