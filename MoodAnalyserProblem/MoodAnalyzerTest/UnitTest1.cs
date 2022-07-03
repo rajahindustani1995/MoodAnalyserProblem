@@ -57,5 +57,37 @@ namespace MoodAnalyzerTest
 
             }
         }
+
+        //Test Case 3.1
+        [TestMethod]
+        public void GivenNullMoodShouldThrowMoodAnalysisException()
+        {
+            try
+            {
+                string message = null;
+                MoodAnalyzer moodAnalyzer = new MoodAnalyzer(message);
+                string actual = moodAnalyzer.AnalyzeMood();
+            }
+            catch (MoodAnalyzerException ex)
+            {
+                Assert.AreEqual("Mood should not be null", ex.Message);
+            }
+        }
+
+        //Test Case 3.2
+        [TestMethod]
+        public void GivenEmptyMoodShouldThrowMoodAnalysisException()
+        {
+            try
+            {
+                string message = "";
+                MoodAnalyzer moodAnalyzer = new MoodAnalyzer(message);
+                string actual = moodAnalyzer.AnalyzeMood();
+            }
+            catch (MoodAnalyzerException ex)
+            {
+                Assert.AreEqual("Mood should not be empty", ex.Message);
+            }
+        }
     }
 }
