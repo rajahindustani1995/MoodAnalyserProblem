@@ -1,5 +1,7 @@
+using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using MoodAnalyzerProblem;
+
 
 namespace MoodAnalyzerTest
 {
@@ -33,6 +35,27 @@ namespace MoodAnalyzerTest
 
             //Assert
             Assert.AreEqual(expected, actual);
+        }
+
+        [TestMethod]
+        public void GivenNullShouldReturnHappy()
+        {
+            try
+            {
+                throw new NullReferenceException();
+            }
+            catch(NullReferenceException ex)
+            {
+                //Arrange
+                string expected = "HAPPY";
+
+                //Act
+                string actual = moodAnalyzer.AnalyzeMood();
+
+                //Assert
+                Assert.AreEqual(expected, actual);
+
+            }
         }
     }
 }
