@@ -114,5 +114,41 @@ namespace MoodAnalyzerTest
             string actual = MoodAnalyzerFactory.InvokeAnalyzeMood("HAPPY", "AnalyzeMood");
             Assert.AreEqual(expected, actual);
         }
+
+        [TestMethod]
+        public void Given_HAPPYMessage_WithReflector_Should_ReturnHAPPY()
+        {
+            string result = MoodAnalyzerFactory.SetField("HAPPY", "message");
+            Assert.AreEqual("HAPPY", result);
+        }
+
+        
+        [TestMethod]
+        public void SetField_ImProper_ShouldThrowException()
+        {
+            try
+            {
+                string result = MoodAnalyzerFactory.SetField("HAPPY", "me");
+            }
+            catch (MoodAnalyzerException exception)
+            {
+                Assert.AreEqual("Field is not found", exception.Message);
+            }
+        }
+
+        
+        [TestMethod]
+        public void Setting_NullMessge_ShouldThrowException()
+        {
+            try
+            {
+                string result = MoodAnalyzerFactory.SetField(null, "message");
+            }
+            catch (MoodAnalyzerException exception)
+            {
+                Assert.AreEqual("Message should not be null", exception.Message);
+            }
+        }
+
     }
 }

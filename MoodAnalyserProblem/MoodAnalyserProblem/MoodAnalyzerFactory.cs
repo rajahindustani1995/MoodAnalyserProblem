@@ -10,6 +10,27 @@ namespace MoodAnalyzerProblem
 {
     public class MoodAnalyzerFactory
     {
+        public static string SetField(string message, string fieldName)
+        {
+
+            try
+            {
+                MoodAnalyzer moodAnalyser = new MoodAnalyzer();
+                Type type = typeof(MoodAnalyzer);
+                FieldInfo field = type.GetField(fieldName, BindingFlags.Public | BindingFlags.Instance);
+                if (message == null)
+                {
+                    throw new MoodAnalyzerException(MoodAnalyzerException.ExceptionType.NO_SUCH_FIELD, "Message should not be null");
+                }
+                field.SetValue(moodAnalyser, message);
+                return moodAnalyser.ToString();
+            }
+            catch (NullReferenceException)
+            {
+                throw new MoodAnalyzerException(MoodAnalyzerException.ExceptionType.NO_SUCH_FIELD, "Field is not found");
+            }
+        }
+
         public static string InvokeAnalyzeMood(string message, string methodName)
         {
             try
