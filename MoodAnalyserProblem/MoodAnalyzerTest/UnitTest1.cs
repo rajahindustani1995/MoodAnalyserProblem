@@ -54,7 +54,7 @@ namespace MoodAnalyzerTest
 
                 //Assert
                 Assert.AreEqual(expected, actual);
-
+                
             }
         }
 
